@@ -1,0 +1,567 @@
+/* ===== PORSCHE WEBSITE - PROFESSIONAL CSS ===== */
+
+/* Reset y Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --porsche-gold: #D4AF37;
+    --porsche-black: #0A0A0A;
+    --porsche-dark-gray: #1C1C1C;
+    --porsche-gray: #2E2E2E;
+    --porsche-light-gray: #8B8B8B;
+    --porsche-white: #FFFFFF;
+    --porsche-red: #CC0000;
+    --porsche-blue: #003366;
+    --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, var(--porsche-black) 0%, var(--porsche-dark-gray) 100%);
+    color: var(--porsche-white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ===== HEADER Y NAVEGACIÓN ===== */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    z-index: 1000;
+    padding: 20px 0;
+    transition: var(--transition);
+}
+
+.header.scrolled {
+    background: rgba(10, 10, 10, 0.98);
+    padding: 15px 0;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.logo {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--porsche-gold);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    transition: var(--transition);
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--porsche-white);
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 12px 24px;
+    border-radius: 6px;
+    transition: var(--transition);
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--porsche-gold);
+    transition: var(--transition);
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 80%;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--porsche-gold);
+    background: rgba(212, 175, 55, 0.1);
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+    height: 100vh;
+    background: 
+        linear-gradient(135deg, rgba(10, 10, 10, 0.7) 0%, rgba(28, 28, 28, 0.8) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23000000"/><stop offset="50%" style="stop-color:%231C1C1C"/><stop offset="100%" style="stop-color:%23000000"/></linearGradient></defs><rect fill="url(%23bg)" width="1600" height="900"/><polygon fill="%23D4AF37" fill-opacity="0.1" points="800,100 900,300 700,300"/><polygon fill="%23CC0000" fill-opacity="0.1" points="1200,200 1300,400 1100,400"/></svg>');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to top, var(--porsche-black), transparent);
+}
+
+.hero-content {
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, var(--porsche-gold) 0%, #FFD700 50%, var(--porsche-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+    letter-spacing: 3px;
+    animation: heroGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes heroGlow {
+    from { 
+        filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5)); 
+    }
+    to { 
+        filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8)); 
+    }
+}
+
+.hero-content p {
+    font-size: 1.4rem;
+    margin-bottom: 40px;
+    color: var(--porsche-light-gray);
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 18px 48px;
+    background: linear-gradient(135deg, var(--porsche-gold) 0%, #B8860B 100%);
+    color: var(--porsche-black);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: var(--transition);
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
+}
+
+/* ===== CONTENT SECTIONS ===== */
+.content-section {
+    display: none;
+    min-height: 100vh;
+    margin-top: 100px;
+    padding: 80px 20px;
+}
+
+.content-section.active {
+    display: block;
+    animation: fadeInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes fadeInUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(60px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.section-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 80px;
+    background: linear-gradient(135deg, var(--porsche-gold) 0%, #FFD700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ===== CATEGORÍAS PROFESIONALES ===== */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.category-card {
+    background: linear-gradient(145deg, var(--porsche-dark-gray) 0%, var(--porsche-gray) 50%, var(--porsche-dark-gray) 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+    opacity: 0;
+    transition: var(--transition);
+    z-index: 1;
+}
+
+.category-card:hover::before {
+    opacity: 1;
+}
+
+.category-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--porsche-gold);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(212, 175, 55, 0.5);
+}
+
+/* Imágenes de categoría más serias y profesionales */
+.category-image {
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* DEPORTIVOS - Diseño elegante con elementos racing */
+.category-image.deportivo {
+    background: 
+        linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(204, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.8) 100%),
+        repeating-linear-gradient(
+            45deg,
+            transparent 0px,
+            transparent 20px,
+            rgba(212, 175, 55, 0.1) 20px,
+            rgba(212, 175, 55, 0.1) 22px
+        );
+}
+
+/* SUV - Diseño robusto y elegante */
+.category-image.suv {
+    background: 
+        linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(45, 80, 22, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%),
+        radial-gradient(ellipse at 30% 70%, rgba(139, 139, 139, 0.2) 0%, transparent 50%);
+}
+
+/* ELÉCTRICOS - Diseño futurista y tecnológico */
+.category-image.electrico {
+    background: 
+        linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 51, 102, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%),
+        linear-gradient(45deg, 
+            transparent 25%, 
+            rgba(212, 175, 55, 0.1) 25%, 
+            rgba(212, 175, 55, 0.1) 50%, 
+            transparent 50%
+        );
+    background-size: 60px 60px;
+}
+
+/* SEDÁN - Diseño ejecutivo y sofisticado */
+.category-image.sedan {
+    background: 
+        linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(74, 74, 74, 0.4) 50%, rgba(0, 0, 0, 0.9) 100%),
+        linear-gradient(90deg, 
+            rgba(212, 175, 55, 0.05) 0%, 
+            transparent 20%, 
+            transparent 80%, 
+            rgba(212, 175, 55, 0.05) 100%
+        );
+}
+
+.category-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.category-content {
+    padding: 32px;
+    position: relative;
+    z-index: 2;
+}
+
+.category-icon {
+    font-size: 2.2rem;
+    margin-bottom: 16px;
+    display: block;
+    color: var(--porsche-gold);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.category-card h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--porsche-white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.category-card p {
+    color: var(--porsche-light-gray);
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+/* ===== MODELOS ===== */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--porsche-gold);
+    text-decoration: none;
+    border-radius: 6px;
+    margin-bottom: 40px;
+    transition: var(--transition);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    font-weight: 500;
+}
+
+.back-button:hover {
+    background: var(--porsche-gold);
+    color: var(--porsche-black);
+    transform: translateX(-3px);
+}
+
+.models-grid {
+    display: none;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.models-grid.active {
+    display: grid;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.model-card {
+    background: linear-gradient(145deg, var(--porsche-dark-gray) 0%, var(--porsche-gray) 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: var(--transition);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.model-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--porsche-gold);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+}
+
+.model-image {
+    height: 220px;
+    background: linear-gradient(135deg, var(--porsche-dark-gray) 0%, var(--porsche-gray) 50%, var(--porsche-dark-gray) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.8rem;
+    color: var(--porsche-gold);
+    position: relative;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.model-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+}
+
+.model-info {
+    padding: 28px;
+}
+
+.model-info h4 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--porsche-white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.model-info p {
+    color: var(--porsche-light-gray);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+.model-specs {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.spec-item {
+    text-align: center;
+}
+
+.spec-value {
+    font-weight: 700;
+    color: var(--porsche-gold);
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+
+.spec-item span:last-child {
+    color: var(--porsche-light-gray);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1200px) {
+    .nav-container {
+        padding: 0 30px;
+    }
+    
+    .category-grid,
+    .models-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+    
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 50px;
+    }
+    
+    .category-grid,
+    .models-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .nav-container {
+        padding: 0 20px;
+    }
+    
+    .section-container {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+    
+    .cta-button {
+        padding: 15px 35px;
+        font-size: 1rem;
+    }
+    
+    .category-content,
+    .model-info {
+        padding: 20px;
+    }
+}

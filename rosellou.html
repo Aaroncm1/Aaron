@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porsche - Pasión por la Perfección</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Header y Navegación */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6b35;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23000" width="1200" height="800"/><path fill="%23333" d="M0 400 Q300 300 600 400 T1200 400 V800 H0 Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 107, 53, 0.5); }
+            to { text-shadow: 0 0 30px rgba(255, 107, 53, 0.8); }
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.5);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            min-height: calc(100vh - 80px);
+            margin-top: 80px;
+            padding: 50px 20px;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .category-card {
+            background: linear-gradient(135deg, #2c2c2c 0%, #3c3c3c 100%);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.2), transparent);
+            transition: all 0.7s ease;
+        }
+
+        .category-card:hover::before {
+            left: 100%;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            border-color: #ff6b35;
+            box-shadow: 0 15px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .category-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .category-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #ff6b35;
+        }
+
+        .category-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* Models Grid */
+        .models-grid {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .models-grid.active {
+            display: grid;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .model-card {
+            background: linear-gradient(135deg, #1c1c1c 0%, #2c2c2c 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .model-card:hover {
+            transform: translateY(-5px);
+            border-color: #f7931e;
+            box-shadow: 0 10px 25px rgba(247, 147, 30, 0.3);
+        }
+
+        .model-image {
+            height: 200px;
+            background: linear-gradient(45deg, #333, #555);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #ff6b35;
+        }
+
+        .model-info {
+            padding: 20px;
+        }
+
+        .model-info h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #ff6b35;
+        }
+
+        .model-specs {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .spec-item {
+            text-align: center;
+        }
+
+        .spec-value {
+            font-weight: bold;
+            color: #f7931e;
+            display: block;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 25px;
+            background: rgba(255, 107, 53, 0.2);
+            color: #ff6b35;
+            text-decoration: none;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid #ff6b35;
+        }
+
+        .back-button:hover {
+            background: #ff6b35;
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo" onclick="showHome()">PORSCHE</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showHome()">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showCategories()">Modelos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Concesionarios</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Contacto</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home-section">
+        <div class="hero-content">
+            <h1>PORSCHE</h1>
+            <p>Pasión por la Perfección. Ingeniería Alemana de Élite.</p>
+            <a href="#" class="cta-button" onclick="showCategories()">Explorar Modelos</a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="content-section" id="categories-section">
+        <div class="section-container">
+            <h2 class="section-title">Elige tu Categoría</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="showModels('deportivo')">
+                    <span class="category-icon">🏎️</span>
+                    <h3>Deportivos</h3>
+                    <p>Pura adrenalina y rendimiento excepcional. Los íconos de la velocidad con tecnología de punta.</p>
+                </div>
+                <div class="category-card" onclick="showModels('suv')">
+                    <span class="category-icon">🚙</span>
+                    <h3>SUV</h3>
+                    <p>Versatilidad premium con el ADN deportivo Porsche. Lujo y capacidad todoterreno.</p>
+                </div>
+                <div class="category-card" onclick="showModels('electrico')">
+                    <span class="category-icon">⚡</span>
+                    <h3>Eléctricos</h3>
+                    <p>El futuro de la movilidad premium. Sostenibilidad sin comprometer el rendimiento.</p>
+                </div>
+                <div class="category-card" onclick="showModels('sedan')">
+                    <span class="category-icon">🚗</span>
+                    <h3>Sedán</h3>
+                    <p>Elegancia ejecutiva con alma deportiva. Confort y prestaciones en perfecta armonía.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Models Sections -->
+    <section class="content-section" id="models-section">
+        <div class="section-container">
+            <a href="#" class="back-button" onclick="showCategories()">← Volver a Categorías</a>
+            <h2 class="section-title" id="models-title">Modelos</h2>
+            
+            <!-- Deportivos -->
+            <div class="models-grid" id="deportivo-models">
+                <div class="model-card">
+                    <div class="model-image">🏎️</div>
+                    <div class="model-info">
+                        <h4>911 GT3</h4>
+                        <p>El 911 más puro. Motor atmosférico de 4.0L con 510 CV y tecnología de carreras.</p>
+                        <div class="model-specs">
+                            <div class="spec-item">
+                                <span class="spec-value">510 CV</span>
+                                <span>Potencia</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">3.4s</span>
+                                <span>0-100 km/h</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">318 km/h</span>
+                                <span>Vel. Máx</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="model-card">
+                    <div class="model-image">🏁</div>
+                    <div class="model-info">
+                        <h4>911 GT2 RS</h4>
+                        <p>El 911 más potente. Twin-turbo de 3.8L con 700 CV. Máximo rendimiento en circuito.</p>
+                        <div class="model-specs">
+                            <div class="spec-item">
+                                <span class="spec-value">700 CV</span>
+                                <span>Potencia</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">2.8s</span>
+                                <span>0-100 km/h</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">340 km/h</span>
+                                <span>Vel. Máx</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="model-card">
+                    <div class="model-image">🎯</div>
+                    <div class="model-info">
+                        <h4>911 Carrera S</h4>
+                        <p>El equilibrio perfecto. Twin-turbo de 3.0L con 450 CV para uso diario y pista.</p>
+                        <div class="model-specs">
+                            <div class="spec-item">
+                                <span class="spec-value">450 CV</span>
+                                <span>Potencia</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">3.7s</span>
+                                <span>0-100 km/h</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">308 km/h</span>
+                                <span>Vel. Máx</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="model-card">
+                    <div class="model-image">🚀</div>
+                    <div class="model-info">
+                        <h4>718 Cayman GT4</h4>
+                        <p>Motor atmosférico de 4.0L con 420 CV. Pureza en el manejo medio-motor.</p>
+                        <div class="model-specs">
+                            <div class="spec-item">
+                                <span class="spec-value">420 CV</span>
+                                <span>Potencia</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">4.4s</span>
+                                <span>0-100 km/h</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">304 km/h</span>
+                                <span>Vel. Máx</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUVs -->
+            <div class="models-grid" id="suv-models">
+                <div class="model-card">
+                    <div class="model-image">🚙</div>
+                    <div class="model-info">
+                        <h4>Cayenne Turbo</h4>
+                        <p>SUV deportivo premium con V8 twin-turbo de 4.0L y 550 CV de potencia.</p>
+                        <div class="model-specs">
+                            <div class="spec-item">
+                                <span class="spec-value">550 CV</span>
+                                <span>Potencia</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">3.9s</span>
+                                <span>0-100 km/h</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">286 km/h</span>
+                                <span>Vel. Máx</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="model-card">
+                    <div class="model-image">⛰️</div>
+                    <div class="model-info">
+                        <h4>Macan GTS</h4>
+                        <p>SUV compacto deportivo con V6 twin-turbo de 2.9L y 440 CV.</p>
+                        <div class="model-specs">
+                            <div class="spec-item">
+                                <span class="spec-value">440 CV</span>
+                                <span>Potencia</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">4.3s</span>
+                                <span>0-100 km/h</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">272 km/h</span>
+                                <span>Vel. Máx</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Eléctricos -->
+            <div class="models-grid" id="electrico-models">
+                <div class="model-card">
+                    <div class="model-image">⚡</div>
+                    <div class="model-info">
+                        <h4>Taycan Turbo S</h4>
+                        <p>Sedán eléctrico premium con 761 CV y tecnología de 800V.</p>
+                        <div class="model-specs">
+                            <div class="spec-item">
+                                <span class="spec-value">761 CV</span>
+                                <span>Potencia</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">2.8s</span>
+                                <span>0-100 km/h</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">260 km/h</span>
+                                <span>Vel. Máx</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="model-card">
+                    <div class="model-image">🔋</div>
+                    <div class="model-info">
+                        <h4>Taycan Cross Turismo</h4>
+                        <p>Versatilidad eléctrica con estilo shooting brake y 625 CV.</p>
+                        <div class="model-specs">
+                            <div class="spec-item">
+                                <span class="spec-value">625 CV</span>
+                                <span>Potencia</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">3.5s</span>
+                                <span>0-100 km/h</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">250 km/h</span>
+                                <span>Vel. Máx</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sedán -->
+            <div class="models-grid" id="sedan-models">
+                <div class="model-card">
+                    <div class="model-image">🚗</div>
+                    <div class="model-info">
+                        <h4>Panamera Turbo S</h4>
+                        <p>Sedán deportivo de lujo con V8 twin-turbo híbrido y 630 CV.</p>
+                        <div class="model-specs">
+                            <div class="spec-item">
+                                <span class="spec-value">630 CV</span>
+                                <span>Potencia</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">3.1s</span>
+                                <span>0-100 km/h</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">315 km/h</span>
+                                <span>Vel. Máx</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="model-card">
+                    <div class="model-image">💼</div>
+                    <div class="model-info">
+                        <h4>Panamera GTS</h4>
+                        <p>Elegancia ejecutiva con V8 twin-turbo de 4.0L y 460 CV.</p>
+                        <div class="model-specs">
+                            <div class="spec-item">
+                                <span class="spec-value">460 CV</span>
+                                <span>Potencia</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">4.1s</span>
+                                <span>0-100 km/h</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">302 km/h</span>
+                                <span>Vel. Máx</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentCategory = '';
+
+        function showHome() {
+            document.getElementById('home-section').style.display = 'flex';
+            document.getElementById('categories-section').classList.remove('active');
+            document.getElementById('models-section').classList.remove('active');
+            
+            // Reset nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector('.nav-link[onclick="showHome()"]').classList.add('active');
+        }
+
+        function showCategories() {
+            document.getElementById('home-section').style.display = 'none';
+            document.getElementById('categories-section').classList.add('active');
+            document.getElementById('models-section').classList.remove('active');
+            
+            // Reset nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector('.nav-link[onclick="showCategories()"]').classList.add('active');
+        }
+
+        function showModels(category) {
+            currentCategory = category;
+            document.getElementById('home-section').style.display = 'none';
+            document.getElementById('categories-section').classList.remove('active');
+            document.getElementById('models-section').classList.add('active');
+            
+            // Hide all model grids
+            document.querySelectorAll('.models-grid').forEach(grid => {
+                grid.classList.remove('active');
+            });
+            
+            // Show selected category models
+            document.getElementById(category + '-models').classList.add('active');
+            
+            // Update title
+            const categoryTitles = {
+                'deportivo': 'Modelos Deportivos',
+                'suv': 'Modelos SUV',
+                'electrico': 'Modelos Eléctricos',
+                'sedan': 'Modelos Sedán'
+            };
+            document.getElementById('models-title').textContent = categoryTitles[category];
+        }
+
+        // Initialize with home
+        showHome();
+
+        // Smooth scrolling and parallax effects
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const header = document.querySelector('.header');
+            
+            if (scrolled > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.98)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+            }
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.category-card, .model-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
